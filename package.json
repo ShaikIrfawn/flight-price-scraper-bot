@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node flight-scraper.js"
   },
-    "dependencies": {
+  "dependencies": {
+    "dotenv": "^17.2.1",
     "express": "^5.1.0",
     "puppeteer": "^24.15.0",
     "puppeteer-extra": "^3.3.6",
