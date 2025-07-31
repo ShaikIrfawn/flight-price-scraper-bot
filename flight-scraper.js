@@ -1,16 +1,18 @@
 const express = require('express');
-const puppeteer = require('puppeteer'); // or 'puppeteer' if using the full package
+const puppeteer = require('puppeteer-core'); // or 'puppeteer' if using the full package
+const fs = require('fs');
 const app = express();
 require('dotenv').config();
 
 app.get('/scrape', async (req, res) => {
 
   try {
-    const chromiumPath = '/usr/bin/chromium-browser'; // for Linux/Render
+    const executablePath = process.env.CHROME_PATH || '/usr/bin/chromium'; // for Linux/Render
 
+    (async () => {
     const browser = await puppeteer.launch({
     headless: true,
-    executablePath: chromiumPath,
+    executablePath,
     args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
 
@@ -35,12 +37,13 @@ app.get('/scrape', async (req, res) => {
 
     console.log('✅ Found price: SGD', price);
     res.send({ price: `SGD ${price}` });
-
+    })();
   } catch (error) {
     console.error('❌ Scraping failed:', error.message);
     res.status(500).send('Scraping failed: ' + error.message);
   }
 });
+
 
 app.listen(3000, () => {
   console.log('✈️ Flight scraper listening on http://localhost:3000/scrape');
