@@ -4,12 +4,21 @@ This is a Node.js web scraper using Puppeteer and Express that fetches the lowes
 
 ---
 
-## 📦 Requirements
+## 👨‍💻 Requirements
 
-- Node.js ≥ 18
-- Git
-- Google Chrome (installed)
-- Internet connection
+Node.js 18+
+
+At least one of these browsers installed:
+
+Chrome
+
+Opera GX
+
+Brave
+
+Edge
+
+Chromium
 
 ---
 

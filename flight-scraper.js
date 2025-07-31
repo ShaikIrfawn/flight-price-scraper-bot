@@ -1,37 +1,16 @@
 const express = require('express');
-const puppeteer = require('puppeteer-core'); // or 'puppeteer' if using the full package
+const puppeteer = require('puppeteer'); // or 'puppeteer' if using the full package
 const app = express();
 require('dotenv').config();
 
-// List of known browser paths (customize if needed)
-const possiblePaths = [
-  process.env.CHROME_PATH, // .env override
-  'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', // Chrome (Windows)
-  'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe', // Edge (Windows)
-  'C:\\Users\\%USERNAME%\\AppData\\Local\\Programs\\Opera GX\\launcher.exe', // Opera GX (Windows)
-  'C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe', // Brave (Windows)
-  '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', // Chrome (macOS)
-  '/Applications/Brave Browser.app/Contents/MacOS/Brave Browser', // Brave (macOS)
-  '/usr/bin/google-chrome-stable', // Linux
-  '/usr/bin/chromium-browser', // Linux
-  '/usr/bin/brave-browser', // Brave (Linux)
-];
-
-// Function to find the first valid browser path
-function getValidBrowserPath() {
-  for (const path of possiblePaths) {
-    if (path && fs.existsSync(path)) return path;
-  }
-  throw new Error('No supported browser found. Please install Chrome or Opera GX and set CHROME_PATH in .env if needed.');
-}
 app.get('/scrape', async (req, res) => {
 
   try {
     const browser = await puppeteer.launch({
-      headless: true,
-      executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', // Adjust for your system
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
-    });
+  headless: true,
+  args: ['--no-sandbox', '--disable-setuid-sandbox']
+});
+
 
     const page = await browser.newPage();
 
