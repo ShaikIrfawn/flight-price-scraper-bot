@@ -3,14 +3,13 @@
   "version": "1.0.0",
   "main": "flight-scraper.js",
   "scripts": {
-    "start": "node flight-scraper.js",
-    "postinstall": "apt-get update && apt-get install -y chromium"
+    "postinstall": "apt-get update && apt-get install -y chromium",
+    "start": "node flight-scraper.js"
   },
   "dependencies": {
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
-    "puppeteer": "^21.3.8",
-    "puppeteer-core": "^24.15.0",
+    "puppeteer": "^21.11.0",
     "puppeteer-extra": "^3.3.6",
     "puppeteer-extra-plugin-stealth": "^2.11.2"
   }
