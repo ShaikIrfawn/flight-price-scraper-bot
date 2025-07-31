@@ -6,10 +6,14 @@ require('dotenv').config();
 app.get('/scrape', async (req, res) => {
 
   try {
+    const chromiumPath = '/usr/bin/chromium-browser'; // for Linux/Render
+
     const browser = await puppeteer.launch({
-  headless: true,
-  args: ['--no-sandbox', '--disable-setuid-sandbox']
-});
+    headless: true,
+    executablePath: chromiumPath,
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
+
 
 
     const page = await browser.newPage();
